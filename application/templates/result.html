@@ -1,4 +1,17 @@
 {% extends "layout.html" %}
 {% block title %}Elpriser - sökresultat{% endblock %}
+{% block content %}
+<div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">Elpriser - sökresultat</h1>
+                <br>
+                {{message}}
+                {{data|safe}}
+            </div>
+        </div>
+    </div>
 
-{% block content %}content{% endblock %}
+
+{{html_data|safe}}
+{% endblock %}

@@ -1,4 +1,35 @@
 {% extends "layout.html" %}
 {% block title %}Elpriser - huvudsida{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">Elprissök</h1>
+            <!-- Felmeddelanden skrivs ut här under -->
+            <p><br></p>
+            <h6 class="text-center">{{err_msg}}</h6>
+            <p><br></p>
+            <form action="api" method="post">
+                <label for="year">År:</label><br>
+                <input type="text" id="year" name="year"><br>
+                <label for="month">Månad:</label><br>
+                <input type="text" id="month" name="month"><br>
+                <label for="day">Dag:</label><br>
+                <input type="text" id="day" name="day"><br>
+                <label for="pclass">Prisklass:</label><br>
+                <select name="pclass" id="pclass">
+                    <option value="SE1">SE1 - Luleå/Norra Sverige</option>
+                    <option value="SE2">SE2 - Sundsvall/Norra Mellansverige</option>
+                    <option value="SE3">SE3 - Stockholm/Södra Mellansverige</option>
+                    <option value="SE4">SE4 - Malmö/Södra Sverige</option>
+                </select>
+                <p><br></p>
+                <button type="submit" class="btn btn-primary">Sök</button>
+                <p><br></p>
 
-{% block content %}content{% endblock %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
