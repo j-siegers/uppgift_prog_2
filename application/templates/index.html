@@ -4,11 +4,17 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="text-center">Elprissök</h1>
+            <br>
+            <p class="h1 text-center">Elprissök</p>
             <!-- Felmeddelanden skrivs ut här under -->
             <p><br></p>
-            <h6 class="text-center">{{err_msg}}</h6>
+            <h6 class="text-center text-danger" >{{err_msg}}</h6>
             <p><br></p>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+  <div class="card-header">Elpriset just nu</div>
+  <div class="card-body text-dark">
+
+    <p class="card-text">
             <form action="api" method="post">
                 <label for="year">År:</label><br>
                 <input type="text" id="year" name="year"><br>
@@ -26,8 +32,14 @@
                 <p><br></p>
                 <button type="submit" class="btn btn-primary">Sök</button>
                 <p><br></p>
-
+                <p><strong>Bra att veta:</strong><br>
+                <small>Historisk data kan endast hämtas till och med 1 november 2022.<br>
+                        Alla priser är utan moms, tillägg och skatter.<br>
+                        Morgondagens elpris anländer tidigast kl 13 dagen innan.
+                </small></p>
             </form>
+    </p>
+        </div>
         </div>
     </div>
 </div>
