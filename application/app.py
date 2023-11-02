@@ -1,10 +1,8 @@
-import urllib.request
-import ssl
 from flask import Flask, render_template, request
-import json
-import pandas as pd
 from datetime import datetime, timedelta
 from application import func
+
+
 app = Flask(__name__)
 
 
@@ -21,9 +19,10 @@ def index():
 def api_post():
     """
     Funktion som tar emot inmatad data från formuläret på indexsidan
-    och skickar vidare URL:en till funktionen json_to_html.
+    och skickar vidare URL:en till funktionerna json_to_dataframe
+    och dataframe_to_plotly.
 
-    :return: Sidan result.html med priser för sökt dag
+    :return: result.html med priser för sökt dag i tabellformat och Plotly diagram.
     """
     # Variabler som sparar inmatad data från formuläret på index.html
     year = request.form['year']
@@ -62,7 +61,8 @@ def api_post():
         bar_chart = func.dataframe_to_plotly(dataframe)
 
         # Tabellerna skickas till result.html där de skrivs ut med datum och prisklass.
-        return render_template('result.html', html_data=html_data, bar_chart=bar_chart, price_class=price_class, date=date)
+        return render_template('result.html', html_data=html_data, bar_chart=bar_chart,
+                               price_class=price_class, date=date)
 
     except Exception as e:
         # Felhanterare om användaren inte fyller i alla fält eller felaktigt datum.
@@ -86,4 +86,5 @@ def method_not_allowed(error):
     Felhanterare om användare försöker ansluta till /api direkt.
     :return: index.html
     """
-    return render_template('index.html')
+    err_msg = 'Error 405: Du har inte behörighet att ansluta till URL:en'
+    return render_template('index.html', err_msg=err_msg)

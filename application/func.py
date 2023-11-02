@@ -1,6 +1,5 @@
 import urllib.request
 import ssl
-from flask import render_template
 import json
 import pandas as pd
 import plotly.express as px
@@ -38,10 +37,9 @@ def json_to_dataframe(url):
         df = df.rename(columns=new_column_names)
         return df
 
-        # Vid fel returneras ett felmeddelande och index laddas.
+        # Vid fel returneras ett felmeddelande.
     except Exception as error:
-        err_msg = f'{error} (sidan du sökte finns inte)'
-        return render_template('index.html', err_msg=err_msg)
+        return error
 
 
 def dataframe_to_plotly(dataframe):
